@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
-import { AuthContext } from "../../../contexts/AuthProvider";
 import { format } from "date-fns";
+import { AuthContext } from "../../../../contexts/AuthProvider";
 
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
@@ -11,6 +11,7 @@ const AddProduct = () => {
     const form = event.target;
     const productName = form.productName.value;
     const categoryName = form.categoryName.value;
+    const condition = form.condition.value;
     const img = form.img.value;
     const location = form.location.value;
     const resalePrice = form.resalePrice.value;
@@ -39,9 +40,12 @@ const AddProduct = () => {
       sold,
       advertised,
       reported,
-      contact,
+      condition,
+      phoneNumber: contact,
       description,
     };
+
+    console.log(product);
 
     fetch("http://localhost:5000/products", {
       method: "POST",
@@ -149,7 +153,7 @@ const AddProduct = () => {
           <select
             className="select select-bordered w-full"
             defaultValue={"Condition"}
-            name="categoryName"
+            name="condition"
           >
             <option value={"Condition"} disabled>
               Condition

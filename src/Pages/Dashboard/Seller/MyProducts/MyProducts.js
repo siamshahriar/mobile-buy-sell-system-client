@@ -2,17 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 
-const MyOrders = () => {
+const MyProducts = () => {
   const { user } = useContext(AuthContext);
 
   const {
-    data: bookings = [],
+    data: myProducts = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["booking"],
+    queryKey: ["products"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/booking/${user?.email}`);
+      const res = await fetch(`http://localhost:5000/products/${user?.email}`);
       const data = await res.json();
       return data;
     },
@@ -21,8 +21,6 @@ const MyOrders = () => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
-
-//   console.log(bookings);
 
   return (
     <div>
@@ -33,16 +31,24 @@ const MyOrders = () => {
               <th></th>
               <th>Product Name</th>
               <th>Price</th>
-              <th>Payment Status</th>
+              <th>Sales Status</th>
+              <th>Advertise</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-            {bookings.map((booking, i) => (
+            {myProducts.map((myProduct, i) => (
               <tr key={i}>
                 <th>{i + 1}</th>
-                <td>{booking.productName}</td>
-                <td>{booking.price} Taka</td>
-                <td>{booking.paidStatus ? "Paid" : "Make Payment"}</td>
+                <td>{myProduct.productName}</td>
+                <td>{myProduct.price} Taka</td>
+                <td>{myProduct.sold ? "Sold" : "Unsold"}</td>
+                <td>
+                  {myProduct.advertised ? "Advertising" : "Make Advertise"}
+                </td>
+                <td>
+                  <button>Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -52,4 +58,4 @@ const MyOrders = () => {
   );
 };
 
-export default MyOrders;
+export default MyProducts;

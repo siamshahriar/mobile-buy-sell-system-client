@@ -4,12 +4,13 @@ import Main from "../../Layout/Main";
 import Items from "../../Pages/CategoryItems/Items/Items";
 import MyOrders from "../../Pages/Dashboard/Buyer/MyOrders/MyOrders";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
+import AddProduct from "../../Pages/Dashboard/Seller/AddProduct/AddProduct";
+import MyProducts from "../../Pages/Dashboard/Seller/MyProducts/MyProducts";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Signup from "../../Pages/Signup/Signup";
 import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
-import AddProduct from "../SellerRoute/AddProduct/AddProduct";
 import SellerRoute from "../SellerRoute/SellerRoute";
 
 const router = createBrowserRouter([
@@ -70,6 +71,14 @@ const router = createBrowserRouter([
         element: (
           <SellerRoute>
             <AddProduct></AddProduct>
+          </SellerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/myproducts",
+        element: (
+          <SellerRoute>
+            <MyProducts></MyProducts>
           </SellerRoute>
         ),
       },
