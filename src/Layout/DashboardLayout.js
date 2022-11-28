@@ -50,10 +50,10 @@ const DashboardLayout = () => {
             {userInfo[0].role === "seller" && (
               <>
                 <li>
-                  <Link to="/dashboard/allusers">Add a Product</Link>
+                  <Link to="/dashboard/addproduct">Add a Product</Link>
                 </li>
                 <li>
-                  <Link to="/dashboard/allusers">My Products</Link>
+                  <Link to="/dashboard/myproducts">My Products</Link>
                 </li>
               </>
             )}
