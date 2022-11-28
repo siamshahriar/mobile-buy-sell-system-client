@@ -34,6 +34,7 @@ const BookingModal = ({ productItem, setProductItem }) => {
       price: resalePrice,
       contact,
       location,
+      paidStatus: false,
     };
 
     fetch("http://localhost:5000/booking", {

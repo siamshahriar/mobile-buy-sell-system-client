@@ -7,7 +7,11 @@ import Navbar from "../Pages/Shared/Navbar/Navbar";
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
-  const { userInfo } = useAdmin(user?.email);
+  const [userInfo, isAdminLoading] = useAdmin(user?.email);
+  if (isAdminLoading) {
+    return <p>Loading</p>;
+  }
+
   return (
     <div>
       <Navbar></Navbar>
@@ -23,10 +27,7 @@ const DashboardLayout = () => {
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 text-base-content">
-            <li>
-              <Link to="/dashboard">My Appointments</Link>
-            </li>
-            {userInfo.role === "admin" && (
+            {userInfo[0].role === "admin" && (
               <>
                 <li>
                   <Link to="/dashboard/allusers">All sellers</Link>
@@ -39,14 +40,14 @@ const DashboardLayout = () => {
                 </li>
               </>
             )}
-            {userInfo.role === "buyer" && (
+            {userInfo[0].role === "buyer" && (
               <>
                 <li>
-                  <Link to="/dashboard/allusers">My Orders</Link>
+                  <Link to="/dashboard/orders">My Orders</Link>
                 </li>
               </>
             )}
-            {userInfo.role === "seller" && (
+            {userInfo[0].role === "seller" && (
               <>
                 <li>
                   <Link to="/dashboard/allusers">Add a Product</Link>
