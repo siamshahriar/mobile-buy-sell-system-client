@@ -14,8 +14,9 @@ const Signup = () => {
   const [signUpError, setSignUPError] = useState("");
 
   const saveUser = (name, email, role) => {
-    const user = { name, email };
-    fetch("", {
+    const number = "0123123123";
+    const user = { name, email, role, contact: number, sellerVerified: false };
+    fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -23,7 +24,7 @@ const Signup = () => {
       body: JSON.stringify(user),
     })
       .then((res) => res.json())
-      .then((data) => {});
+      .then((data) => console.log(data));
   };
 
   const handleSignUp = (data) => {
@@ -39,7 +40,7 @@ const Signup = () => {
         };
         updateUser(userInfo)
           .then(() => {
-            // saveUser(data.name, data.email, data.role);
+            saveUser(data.name, data.email, data.role);
           })
           .catch((err) => console.log(err));
       })
@@ -121,22 +122,13 @@ const Signup = () => {
                   <option value="seller">Seller</option>
                 </select>
 
-                <div className="flex justify-between items-center mb-6">
-                  <a
-                    href="#!"
-                    className="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-
                 <button
                   type="submit"
-                  className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
+                  className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full mt-6"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                 >
-                  Sign in
+                  Signup
                 </button>
                 <div>
                   {signUpError && <p className="text-red-600">{signUpError}</p>}
