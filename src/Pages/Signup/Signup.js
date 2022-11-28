@@ -15,7 +15,7 @@ const Signup = () => {
 
   const saveUser = (name, email, role) => {
     const number = "0123123123";
-    const user = { name, email, role, contact: number, sellerVerified: false };
+    const user = { name, email, contact: number, sellerVerified: false, role };
     fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
@@ -24,7 +24,7 @@ const Signup = () => {
       body: JSON.stringify(user),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {});
   };
 
   const handleSignUp = (data) => {
