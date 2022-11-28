@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { FaCheckCircle, FaTimes } from "react-icons/fa";
 
-const EachItem = ({ product }) => {
+const EachItem = ({ product, setProductItem }) => {
   const {
     img,
     productName,
@@ -62,7 +62,13 @@ const EachItem = ({ product }) => {
           )}
         </p>
         <div className="card-actions">
-          <button className="btn btn-primary">Book Now</button>
+          <label
+            htmlFor="bookingModal"
+            onClick={() => setProductItem(product)}
+            className="btn btn-primary"
+          >
+            Book Now
+          </label>
         </div>
       </div>
     </div>
