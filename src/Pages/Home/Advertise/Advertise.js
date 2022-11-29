@@ -15,6 +15,21 @@ const Advertise = () => {
       });
   }, []);
 
+  // console.log("advertige");
+
+  // const {
+  //   data: products = [],
+  //   isLoading,
+  //   refetch,
+  // } = useQuery({
+  //   queryKey: ["users"],
+  //   queryFn: async () => {
+  //     const res = await fetch("http://localhost:5000/advertisements");
+  //     const data = await res.json();
+  //     return data;
+  //   },
+  // });
+
   if (!products) {
     return <div>Loading...</div>;
   }

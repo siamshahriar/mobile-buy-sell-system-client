@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { FaCheckCircle, FaTimes } from "react-icons/fa";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const EachItem = ({ product, setProductItem }) => {
   const {
@@ -19,26 +20,34 @@ const EachItem = ({ product, setProductItem }) => {
     sellerMail,
   } = product;
 
-  const {
-    data: sellerInfo = [],
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["users"],
-    queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/users/${sellerMail}`);
-      const data = await res.json();
-      return data;
-    },
-  });
+  const [userInfo, isAdminLoading] = useAdmin(sellerMail);
+  // console.log(userInfo[0]);
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/users/${sellerMail}`)
-      .then((res) => res.json)
-      .then((data) => {});
-  }, [sellerMail]);
+  // const {
+  //   data: sellerInfo = [],
+  //   isLoading,
+  //   refetch,
+  // } = useQuery({
+  //   queryKey: [sellerMail],
+  //   queryFn: async () => {
+  //     const res = await fetch(`http://localhost:5000/users/${sellerMail}`);
+  //     const data = await res.json();
+  //     return data;
+  //   },
+  // });
 
-  if (isLoading) {
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/users/${sellerMail}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(productName);
+  //     });
+  // }, []);
+
+  // if (isLoading) {
+  //   return <p>Loading</p>;
+  // }
+  if (isAdminLoading) {
     return <p>Loading</p>;
   }
 
@@ -59,13 +68,17 @@ const EachItem = ({ product, setProductItem }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
-          refetch();
+          // refetch();
           toast.success("Report done Successfully");
         }
       });
   };
 
-  const { name, sellerVerified } = sellerInfo[0];
+  const { name, sellerVerified } = userInfo[0];
+
+  // const { name, sellerVerified } = sellerInfo[0];
+
+  // console.log(productName, sellerMail);
 
   return (
     <div className="card w-full bg-base-100 shadow-xl">
@@ -92,9 +105,9 @@ const EachItem = ({ product, setProductItem }) => {
         <p>
           Verfication Status :
           {sellerVerified ? (
-            <FaCheckCircle className="inline ml-4 bg-blue-600 rounded-full h-5 w-5"></FaCheckCircle>
+            <FaCheckCircle className="inline ml-4 text-blue-500 rounded-full h-5 w-5"></FaCheckCircle>
           ) : (
-            <FaTimes className="inline ml-4 bg-red-600 rounded-full h-5 w-5"></FaTimes>
+            <FaTimes className="inline ml-4 text-red-600 bg-red-300 rounded-full h-5 w-5"></FaTimes>
           )}
         </p>
         <div className="card-actions">

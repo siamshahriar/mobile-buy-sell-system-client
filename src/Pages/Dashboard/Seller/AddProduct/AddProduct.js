@@ -19,7 +19,7 @@ const AddProduct = () => {
     const yearsOfuse = form.yearsOfUse.value;
     const yearsOfBuy = form.yearsOfBuy.value;
     const time = date;
-    const email = form.email.value;
+    const sellerMail = form.email.value;
     const sold = false;
     const advertised = false;
     const reported = false;
@@ -36,7 +36,7 @@ const AddProduct = () => {
       yearsOfuse,
       yearsOfBuy,
       time,
-      email,
+      sellerMail,
       sold,
       advertised,
       reported,
