@@ -40,6 +40,31 @@ const MyProducts = () => {
       });
   };
 
+  //deleting product
+  const handleAdvertiseProduct = (myProduct) => {
+    const confirmAdvertise = window.confirm(
+      `Advertise ${myProduct.productName} ??`
+    );
+    if (!confirmAdvertise) {
+      toast.error("Advertise process canceled by seller");
+      return;
+    }
+    fetch(`http://localhost:5000/products/${myProduct._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ advertised: true }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          refetch();
+          toast.success("Advertisement done Successfully");
+        }
+      });
+  };
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -66,7 +91,13 @@ const MyProducts = () => {
                 <td>{myProduct.price} Taka</td>
                 <td>{myProduct.sold ? "Sold" : "Unsold"}</td>
                 <td>
-                  {myProduct.advertised ? "Advertising" : "Make Advertise"}
+                  {myProduct.advertised ? (
+                    "Advertising Now"
+                  ) : (
+                    <button onClick={() => handleAdvertiseProduct(myProduct)}>
+                      Make Advertise
+                    </button>
+                  )}
                 </td>
                 <td>
                   <button onClick={() => handleDeleteProduct(myProduct)}>
