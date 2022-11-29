@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { FaCheckCircle, FaTimes } from "react-icons/fa";
 
@@ -31,6 +31,12 @@ const EachItem = ({ product, setProductItem }) => {
       return data;
     },
   });
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${sellerMail}`)
+      .then((res) => res.json)
+      .then((data) => {});
+  }, [sellerMail]);
 
   if (isLoading) {
     return <p>Loading</p>;
