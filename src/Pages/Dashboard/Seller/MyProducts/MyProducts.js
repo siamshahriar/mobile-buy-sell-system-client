@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 
 const MyProducts = () => {
@@ -17,6 +18,27 @@ const MyProducts = () => {
       return data;
     },
   });
+
+  //deleting product
+  const handleDeleteProduct = (myProduct) => {
+    const confirmDelete = window.confirm(`Delete ${myProduct.productName} ??`);
+    if (!confirmDelete) {
+      toast.error("Deletion process canceled by seller");
+      return;
+    }
+    fetch(`http://localhost:5000/products/${myProduct._id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          refetch();
+          toast.success(
+            `Product ${myProduct.productName} deleted successfully`
+          );
+        }
+      });
+  };
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -47,7 +69,9 @@ const MyProducts = () => {
                   {myProduct.advertised ? "Advertising" : "Make Advertise"}
                 </td>
                 <td>
-                  <button>Delete</button>
+                  <button onClick={() => handleDeleteProduct(myProduct)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
