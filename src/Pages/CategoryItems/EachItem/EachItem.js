@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import toast from "react-hot-toast";
 import { FaCheckCircle, FaTimes } from "react-icons/fa";
 
 const EachItem = ({ product, setProductItem }) => {
   const {
+    _id,
     img,
     productName,
     location,
@@ -17,7 +19,11 @@ const EachItem = ({ product, setProductItem }) => {
     sellerMail,
   } = product;
 
-  const { data: sellerInfo = [], isLoading } = useQuery({
+  const {
+    data: sellerInfo = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/users/${sellerMail}`);
@@ -29,6 +35,29 @@ const EachItem = ({ product, setProductItem }) => {
   if (isLoading) {
     return <p>Loading</p>;
   }
+
+  //Report product
+  const handleReportProduct = (product) => {
+    const confirmReport = window.confirm(`Report ${product.productName} ??`);
+    if (!confirmReport) {
+      toast.error("Report process canceled by seller");
+      return;
+    }
+    fetch(`http://localhost:5000/report/${product._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ reported: true }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          refetch();
+          toast.success("Report done Successfully");
+        }
+      });
+  };
 
   const { name, sellerVerified } = sellerInfo[0];
 
@@ -71,6 +100,12 @@ const EachItem = ({ product, setProductItem }) => {
             Book Now
           </label>
         </div>
+        <button
+          onClick={() => handleReportProduct(product)}
+          className="btn btn-warning"
+        >
+          Report to admin
+        </button>
       </div>
     </div>
   );

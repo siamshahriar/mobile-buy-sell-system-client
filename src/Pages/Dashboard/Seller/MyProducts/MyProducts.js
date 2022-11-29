@@ -40,7 +40,7 @@ const MyProducts = () => {
       });
   };
 
-  //deleting product
+  //advertise product
   const handleAdvertiseProduct = (myProduct) => {
     const confirmAdvertise = window.confirm(
       `Advertise ${myProduct.productName} ??`
