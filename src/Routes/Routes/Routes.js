@@ -9,6 +9,7 @@ import MyOrders from "../../Pages/Dashboard/Buyer/MyOrders/MyOrders";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import AddProduct from "../../Pages/Dashboard/Seller/AddProduct/AddProduct";
 import MyProducts from "../../Pages/Dashboard/Seller/MyProducts/MyProducts";
+import Error404 from "../../Pages/Error404/Error404";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Signup from "../../Pages/Signup/Signup";
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/categories/${params.category}`),
+      },
+      {
+        path: "/*",
+        element: <Error404></Error404>,
       },
     ],
   },
@@ -109,6 +114,10 @@ const router = createBrowserRouter([
             <Reports></Reports>
           </AdminRoute>
         ),
+      },
+      {
+        path: "/dashboard/*",
+        element: <Error404></Error404>,
       },
     ],
   },
