@@ -1,6 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
+import Blog from "../../Pages/Blog/Blog/Blog";
+import JVNODE from "../../Pages/Blog/JVNODE";
+import JWT from "../../Pages/Blog/JWT";
+import NodeMulti from "../../Pages/Blog/NodeMulti";
+import SQL from "../../Pages/Blog/SQL";
 import Items from "../../Pages/CategoryItems/Items/Items";
 import AllBuyers from "../../Pages/Dashboard/Admin/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/Admin/AllSeller/AllSellers";
@@ -44,6 +49,26 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/categories/${params.category}`),
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
+      },
+      {
+        path: "/blog/state",
+        element: <SQL></SQL>,
+      },
+      {
+        path: "/blog/work",
+        element: <JWT></JWT>,
+      },
+      {
+        path: "/blog/unit",
+        element: <JVNODE></JVNODE>,
+      },
+      {
+        path: "/blog/vs",
+        element: <NodeMulti></NodeMulti>,
       },
       {
         path: "/*",
