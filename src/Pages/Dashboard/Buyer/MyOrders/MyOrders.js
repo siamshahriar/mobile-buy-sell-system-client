@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 
 const MyOrders = () => {
@@ -18,11 +19,13 @@ const MyOrders = () => {
     },
   });
 
+  const handleVerifySeller = (booking) => {};
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
-//   console.log(bookings);
+  //   console.log(bookings);
 
   return (
     <div>
@@ -34,6 +37,7 @@ const MyOrders = () => {
               <th>Product Name</th>
               <th>Price</th>
               <th>Payment Status</th>
+              <th>Make Payment</th>
             </tr>
           </thead>
           <tbody>
@@ -42,7 +46,21 @@ const MyOrders = () => {
                 <th>{i + 1}</th>
                 <td>{booking.productName}</td>
                 <td>{booking.price} Taka</td>
-                <td>{booking.paidStatus ? "Paid" : "Make Payment"}</td>
+                <td>{booking.paidStatus ? "Paid" : "Not Paid"}</td>
+                {booking.paidStatus ? (
+                  <button className="btn btn-primary btn-disabled">
+                    Done Payment
+                  </button>
+                ) : (
+                  <Link to={`/dashboard/payment/${booking._id}`}>
+                    <button
+                      onClick={() => handleVerifySeller(booking)}
+                      className="btn btn-secondary"
+                    >
+                      Make Payment
+                    </button>
+                  </Link>
+                )}
               </tr>
             ))}
           </tbody>

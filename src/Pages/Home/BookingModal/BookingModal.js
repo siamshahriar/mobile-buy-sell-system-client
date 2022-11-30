@@ -6,6 +6,7 @@ const BookingModal = ({ productItem, setProductItem }) => {
   const { user } = useContext(AuthContext);
 
   const {
+    _id,
     img,
     productName,
     location,
@@ -28,6 +29,7 @@ const BookingModal = ({ productItem, setProductItem }) => {
     const location = form.location.value;
 
     const booking = {
+      orginalProductId: _id,
       userName: name,
       email,
       productName,
@@ -46,7 +48,7 @@ const BookingModal = ({ productItem, setProductItem }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.acknowledged) {
           setProductItem(null);
           toast.success("Booking confirmed");
