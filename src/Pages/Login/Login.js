@@ -26,7 +26,7 @@ const Login = () => {
       sellerVerified: false,
       role: "buyer",
     };
-    fetch("http://localhost:5000/users", {
+    fetch("https://mobile-buy-sell-system-server.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

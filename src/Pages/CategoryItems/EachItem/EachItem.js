@@ -30,14 +30,14 @@ const EachItem = ({ product, setProductItem }) => {
   // } = useQuery({
   //   queryKey: [sellerMail],
   //   queryFn: async () => {
-  //     const res = await fetch(`http://localhost:5000/users/${sellerMail}`);
+  //     const res = await fetch(`https://mobile-buy-sell-system-server.vercel.app/users/${sellerMail}`);
   //     const data = await res.json();
   //     return data;
   //   },
   // });
 
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/users/${sellerMail}`)
+  //   fetch(`https://mobile-buy-sell-system-server.vercel.app/users/${sellerMail}`)
   //     .then((res) => res.json())
   //     .then((data) => {
   //       console.log(productName);
@@ -58,13 +58,16 @@ const EachItem = ({ product, setProductItem }) => {
       toast.error("Report process canceled by seller");
       return;
     }
-    fetch(`http://localhost:5000/report/${product._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ reported: true }),
-    })
+    fetch(
+      `https://mobile-buy-sell-system-server.vercel.app/report/${product._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ reported: true }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

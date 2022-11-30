@@ -49,7 +49,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/categories/${params.category}`),
+          fetch(
+            `https://mobile-buy-sell-system-server.vercel.app/categories/${params.category}`
+          ),
       },
       {
         path: "/blog",
@@ -109,7 +111,9 @@ const router = createBrowserRouter([
           </BuyerRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookings/${params.id}`),
+          fetch(
+            `https://mobile-buy-sell-system-server.vercel.app/bookings/${params.id}`
+          ),
       },
       {
         path: "/dashboard/addproduct",

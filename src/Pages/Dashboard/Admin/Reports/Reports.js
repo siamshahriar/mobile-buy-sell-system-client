@@ -7,7 +7,7 @@ const Reports = () => {
   const [postReviewChange, setpostReviewChnage] = useState({});
   useEffect(() => {
     axios
-      .get("http://localhost:5000/lists/reports")
+      .get("https://mobile-buy-sell-system-server.vercel.app/lists/reports")
       .then((res) => setReports(res.data));
   }, [postReviewChange]);
 
@@ -18,9 +18,12 @@ const Reports = () => {
       toast.error("Deletion process canceled by Admin");
       return;
     }
-    fetch(`http://localhost:5000/products/${report._id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://mobile-buy-sell-system-server.vercel.app/products/${report._id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {

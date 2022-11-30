@@ -8,7 +8,7 @@ const AllSellers = () => {
   const [postReviewChange, setpostReviewChnage] = useState({});
   useEffect(() => {
     axios
-      .get("http://localhost:5000/lists/seller")
+      .get("https://mobile-buy-sell-system-server.vercel.app/lists/seller")
       .then((res) => setSellers(res.data));
   }, [postReviewChange]);
 
@@ -19,9 +19,12 @@ const AllSellers = () => {
       toast.error("Deletion process canceled by Admin");
       return;
     }
-    fetch(`http://localhost:5000/users/${seller._id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://mobile-buy-sell-system-server.vercel.app/users/${seller._id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
@@ -38,12 +41,15 @@ const AllSellers = () => {
       toast.error("Verification process canceled by Admin");
       return;
     }
-    fetch(`http://localhost:5000/sellers/${seller._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `https://mobile-buy-sell-system-server.vercel.app/sellers/${seller._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -70,17 +76,17 @@ const AllSellers = () => {
             {sellers.map((seller, i) => (
               <tr key={i}>
                 <th>{i + 1}</th>
-                <td>{seller.name}</td>
-                <td>{seller.email}</td>
+                <td>{seller?.name}</td>
+                <td>{seller?.email}</td>
                 <td>
-                  {seller.sellerVerified ? (
+                  {seller?.sellerVerified ? (
                     <button className="btn btn-warning">Yes</button>
                   ) : (
                     <button className="btn btn-warning">No</button>
                   )}
                 </td>
                 <td>
-                  {seller.sellerVerified ? (
+                  {seller?.sellerVerified ? (
                     <button className="btn btn-primary btn-disabled">
                       Verified
                     </button>

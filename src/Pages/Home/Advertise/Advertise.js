@@ -8,27 +8,12 @@ const Advertise = () => {
   const [productItem, setProductItem] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/advertisements")
+    fetch("https://mobile-buy-sell-system-server.vercel.app/advertisements")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
       });
   }, []);
-
-  // console.log("advertige");
-
-  // const {
-  //   data: products = [],
-  //   isLoading,
-  //   refetch,
-  // } = useQuery({
-  //   queryKey: ["users"],
-  //   queryFn: async () => {
-  //     const res = await fetch("http://localhost:5000/advertisements");
-  //     const data = await res.json();
-  //     return data;
-  //   },
-  // });
 
   if (!products) {
     return <progress className="progress w-56"></progress>;

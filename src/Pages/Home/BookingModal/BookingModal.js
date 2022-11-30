@@ -40,7 +40,7 @@ const BookingModal = ({ productItem, setProductItem }) => {
       paidStatus: false,
     };
 
-    fetch("http://localhost:5000/booking", {
+    fetch("https://mobile-buy-sell-system-server.vercel.app/booking", {
       method: "POST",
       headers: {
         "content-type": "application/json",

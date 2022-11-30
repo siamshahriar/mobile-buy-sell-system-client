@@ -13,7 +13,9 @@ const MyProducts = () => {
   } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/products/${user?.email}`);
+      const res = await fetch(
+        `https://mobile-buy-sell-system-server.vercel.app/products/${user?.email}`
+      );
       const data = await res.json();
       return data;
     },
@@ -26,9 +28,12 @@ const MyProducts = () => {
       toast.error("Deletion process canceled by seller");
       return;
     }
-    fetch(`http://localhost:5000/products/${myProduct._id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://mobile-buy-sell-system-server.vercel.app/products/${myProduct._id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
@@ -49,13 +54,16 @@ const MyProducts = () => {
       toast.error("Advertise process canceled by seller");
       return;
     }
-    fetch(`http://localhost:5000/products/${myProduct._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ advertised: true }),
-    })
+    fetch(
+      `https://mobile-buy-sell-system-server.vercel.app/products/${myProduct._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ advertised: true }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -97,8 +105,8 @@ const MyProducts = () => {
                     </div>
                   </div>
                 </td>
-                <td>{myProduct.productName}</td>
-                <td>{myProduct.resalePrice} Taka</td>
+                <td>{myProduct?.productName}</td>
+                <td>{myProduct?.resalePrice} Taka</td>
                 <td>
                   {myProduct.sold ? (
                     <button className="btn btn-success">Sold</button>

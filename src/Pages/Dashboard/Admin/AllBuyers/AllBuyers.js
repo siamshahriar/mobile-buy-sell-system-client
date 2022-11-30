@@ -8,7 +8,7 @@ const AllBuyers = () => {
   const [postReviewChange, setpostReviewChnage] = useState({});
   useEffect(() => {
     axios
-      .get("http://localhost:5000/lists/buyer")
+      .get("https://mobile-buy-sell-system-server.vercel.app/lists/buyer")
       .then((res) => setBuyers(res.data));
   }, [postReviewChange]);
 
@@ -19,9 +19,12 @@ const AllBuyers = () => {
       toast.error("Deletion process canceled by Admin");
       return;
     }
-    fetch(`http://localhost:5000/users/${buyer._id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://mobile-buy-sell-system-server.vercel.app/users/${buyer._id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
@@ -46,17 +49,8 @@ const AllBuyers = () => {
             {buyers.map((buyer, i) => (
               <tr key={i}>
                 <th>{i + 1}</th>
-                <td>{buyer.name}</td>
-                <td>{buyer.email}</td>
-                {/* <td>
-                  {buyer.sellerVerified ? (
-                    "Verified"
-                  ) : (
-                    <button className="btn btn-secondary">
-                      Make Verify <FaTimes className="ml-3"></FaTimes>
-                    </button>
-                  )}
-                </td> */}
+                <td>{buyer?.name}</td>
+                <td>{buyer?.email}</td>
                 <td>
                   <button
                     onClick={() => handleDeleteBuyer(buyer)}

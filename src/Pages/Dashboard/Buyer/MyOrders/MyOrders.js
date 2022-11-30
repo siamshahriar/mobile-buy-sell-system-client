@@ -13,7 +13,9 @@ const MyOrders = () => {
   } = useQuery({
     queryKey: ["booking"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/booking/${user?.email}`);
+      const res = await fetch(
+        `https://mobile-buy-sell-system-server.vercel.app/booking/${user?.email}`
+      );
       const data = await res.json();
       return data;
     },
@@ -50,17 +52,17 @@ const MyOrders = () => {
                     </div>
                   </div>
                 </td>
-                <td>{booking.productName}</td>
-                <td>{booking.price} Taka</td>
+                <td>{booking?.productName}</td>
+                <td>{booking?.price} Taka</td>
                 <td>
-                  {booking.paidStatus ? (
+                  {booking?.paidStatus ? (
                     <button className="btn btn-success">Paid</button>
                   ) : (
                     <button className="btn btn-warning">Not Paid</button>
                   )}
                 </td>
                 <td>
-                  {booking.paidStatus ? (
+                  {booking?.paidStatus ? (
                     <button className="btn btn-primary btn-disabled">
                       Done Payment
                     </button>
