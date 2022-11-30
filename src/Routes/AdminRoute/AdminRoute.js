@@ -7,7 +7,8 @@ const AdminRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const [userInfo, isAdminLoading] = useAdmin(user?.email);
 
-  const location = useLocation();
+  // const location = useLocation();
+  // state={{ from: location }}
 
   if (loading || isAdminLoading) {
     return <progress className="progress w-56"></progress>;
@@ -17,7 +18,7 @@ const AdminRoute = ({ children }) => {
     return children;
   }
 
-  return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
+  return <Navigate to="/login" replace></Navigate>;
 };
 
 export default AdminRoute;

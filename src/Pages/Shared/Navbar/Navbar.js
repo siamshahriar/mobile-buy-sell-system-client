@@ -64,7 +64,15 @@ const Navbar = () => {
             {menuItems}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
+        <div className="avatar">
+          <div className="w-8 rounded">
+            <img
+              src="https://png.pngtree.com/png-vector/20190130/ourlarge/pngtree-mobile-phone-icon-element-buy-buy-buy-phoneiconmobile-phone-icongraphicsmobile-png-image_591968.jpg"
+              alt="Tailwind-CSS-Avatar-component"
+            />
+          </div>
+        </div>
+        <Link to="/" className="btn btn-ghost normal-case text-xl font-mono">
           Mobile Buy Sell
         </Link>
       </div>
