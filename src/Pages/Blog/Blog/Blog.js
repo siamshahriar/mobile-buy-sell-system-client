@@ -11,7 +11,7 @@ const Blog = () => {
           </h1>
 
           <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
-            <div className="lg:flex bg-base-100 bg-opacity-50 rounded-xl ">
+            <div className="lg:flex bg-base-300 bg-opacity-50 rounded-xl ">
               <img
                 className="object-cover w-full h-56 rounded-lg lg:w-64"
                 src="https://miro.medium.com/max/1200/1*hYSKyofnqThnPIsYRfnUUQ.png"
@@ -33,7 +33,7 @@ const Blog = () => {
               </div>
             </div>
 
-            <div className="lg:flex bg-base-100 bg-opacity-50 rounded-xl">
+            <div className="lg:flex bg-base-300 bg-opacity-50 rounded-xl">
               <img
                 className="object-cover w-full h-56 rounded-lg lg:w-64"
                 src="https://www.cronj.com/blog/wp-content/uploads/inheritance.png"
@@ -54,7 +54,7 @@ const Blog = () => {
               </div>
             </div>
 
-            <div className="lg:flex bg-base-100 bg-opacity-50 rounded-xl">
+            <div className="lg:flex bg-base-300 bg-opacity-50 rounded-xl">
               <img
                 className="object-cover w-full h-56 rounded-lg lg:w-64"
                 src="https://www.seguetech.com/wp-content/uploads/2014/10/segue-blog-benefits-unit-testing.png"
@@ -75,7 +75,7 @@ const Blog = () => {
               </div>
             </div>
 
-            <div className="lg:flex bg-base-100 bg-opacity-50 rounded-xl">
+            <div className="lg:flex bg-base-300 bg-opacity-50 rounded-xl">
               <img
                 className="object-cover w-full h-56 rounded-lg lg:w-64"
                 src="https://www.simplilearn.com/ice9/free_resources_article_thumb/recact_angular_vue.jpg"

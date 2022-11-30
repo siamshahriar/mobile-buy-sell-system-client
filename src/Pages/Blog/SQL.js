@@ -3,7 +3,7 @@ import React from "react";
 const SQL = () => {
   return (
     <div className="pt-24 px-10">
-      <div className="bg-gray-100 lg:px-14 mb-10 rounded-lg pb-10 max-w-screen-xl px-8 mx-auto">
+      <div className="bg-base-300 lg:px-14 mb-10 rounded-lg pb-10 max-w-screen-xl px-8 mx-auto">
         <h2 className="text-xl font-semibold text-center py-10 pt-8">
           What are the different ways to manage a state in a React application?
         </h2>

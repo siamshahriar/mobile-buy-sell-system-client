@@ -36,7 +36,7 @@ const AllBuyers = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th></th>
+              <th>No.</th>
               <th>Buyer Name</th>
               <th>Email</th>
               <th>Operation</th>

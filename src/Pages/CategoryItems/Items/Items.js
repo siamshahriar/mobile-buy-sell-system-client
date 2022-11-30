@@ -8,6 +8,11 @@ const Items = () => {
   const [productItem, setProductItem] = useState(null);
   return (
     <>
+      <div>
+        <h2 className="text-3xl font-bold font-mono text-center ">
+          {products[0].categoryName} Category
+        </h2>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-7">
         {products.map((product) => (
           <EachItem

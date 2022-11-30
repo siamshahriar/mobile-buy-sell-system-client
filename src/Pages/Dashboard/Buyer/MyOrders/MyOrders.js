@@ -19,10 +19,8 @@ const MyOrders = () => {
     },
   });
 
-  const handleVerifySeller = (booking) => {};
-
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <progress className="progress w-56"></progress>;
   }
 
   //   console.log(bookings);
@@ -33,7 +31,8 @@ const MyOrders = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th></th>
+              <th>No.</th>
+              <th>Image</th>
               <th>Product Name</th>
               <th>Price</th>
               <th>Payment Status</th>
@@ -44,23 +43,36 @@ const MyOrders = () => {
             {bookings.map((booking, i) => (
               <tr key={i}>
                 <th>{i + 1}</th>
+                <td>
+                  <div className="avatar">
+                    <div className="w-24 rounded">
+                      <img src={booking?.img} alt="" />
+                    </div>
+                  </div>
+                </td>
                 <td>{booking.productName}</td>
                 <td>{booking.price} Taka</td>
-                <td>{booking.paidStatus ? "Paid" : "Not Paid"}</td>
-                {booking.paidStatus ? (
-                  <button className="btn btn-primary btn-disabled">
-                    Done Payment
-                  </button>
-                ) : (
-                  <Link to={`/dashboard/payment/${booking._id}`}>
-                    <button
-                      onClick={() => handleVerifySeller(booking)}
-                      className="btn btn-secondary"
+                <td>
+                  {booking.paidStatus ? (
+                    <button className="btn btn-success">Paid</button>
+                  ) : (
+                    <button className="btn btn-warning">Not Paid</button>
+                  )}
+                </td>
+                <td>
+                  {booking.paidStatus ? (
+                    <button className="btn btn-primary btn-disabled">
+                      Done Payment
+                    </button>
+                  ) : (
+                    <Link
+                      className="btn btn-warning"
+                      to={`/dashboard/payment/${booking._id}`}
                     >
                       Make Payment
-                    </button>
-                  </Link>
-                )}
+                    </Link>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>

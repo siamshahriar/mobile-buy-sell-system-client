@@ -9,7 +9,7 @@ const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   const [userInfo, isAdminLoading] = useAdmin(user?.email);
   if (isAdminLoading) {
-    return <p>Loading</p>;
+    return <progress className="progress w-56"></progress>;
   }
 
   return (

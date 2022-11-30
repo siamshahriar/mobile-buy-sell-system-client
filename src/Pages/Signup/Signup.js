@@ -116,7 +116,7 @@ const Signup = () => {
                 </div>
 
                 <select
-                  className="select select-bordered w-full"
+                  className="select select-bordered w-full text-white"
                   {...register("role")}
                 >
                   <option value="buyer" defaultValue="buyer">
@@ -136,7 +136,7 @@ const Signup = () => {
                 <div>
                   {signUpError && <p className="text-red-600">{signUpError}</p>}
                 </div>
-                <p>
+                <p className="text-white mt-6">
                   Already have an account?{" "}
                   <Link className="text-red-300" to="/login">
                     Login here

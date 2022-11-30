@@ -31,12 +31,12 @@ const Advertise = () => {
   // });
 
   if (!products) {
-    return <div>Loading...</div>;
+    return <progress className="progress w-56"></progress>;
   }
 
   return (
     <>
-      <h2 className="text-3xl font-semibold text-center my-8">
+      <h2 className="text-4xl font-semibold font-mono text-center my-8 lg:mt-14">
         Adverstisements
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-7">

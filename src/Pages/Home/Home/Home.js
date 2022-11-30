@@ -9,7 +9,7 @@ const Home = () => {
       <Banner></Banner>
       <Advertise></Advertise>
       <div>
-        <h2 className="text-3xl font-semibold text-center">
+        <h2 className="text-4xl font-semibold font-mono text-center lg:mt-14">
           Product Categories
         </h2>
       </div>

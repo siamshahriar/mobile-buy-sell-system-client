@@ -37,7 +37,8 @@ const Reports = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th></th>
+              <th>No.</th>
+              <th>Image</th>
               <th>Product Name</th>
               <th>Category</th>
               <th>Operation</th>
@@ -47,8 +48,15 @@ const Reports = () => {
             {reports.map((report, i) => (
               <tr key={i}>
                 <th>{i + 1}</th>
-                <td>{report.productName}</td>
-                <td>{report.categoryName}</td>
+                <td>
+                  <div className="avatar">
+                    <div className="w-24 rounded">
+                      <img src={report?.img} alt="" />
+                    </div>
+                  </div>
+                </td>
+                <td>{report?.productName}</td>
+                <td>{report?.categoryName}</td>
                 <td>
                   <button
                     onClick={() => handleDeleteProduct(report)}

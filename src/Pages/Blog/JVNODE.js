@@ -3,7 +3,7 @@ import React from "react";
 const JVNODE = () => {
   return (
     <div className="pt-24 px-10">
-      <div className="bg-gray-100 px-8 lg:px-14 mb-10 rounded-lg pb-10 max-w-screen-xl mx-auto">
+      <div className="bg-base-300 px-8 lg:px-14 mb-10 rounded-lg pb-10 max-w-screen-xl mx-auto">
         <h2 className="text-xl font-semibold text-center py-10 pt-8">
           What is a unit test? Why should we write unit tests?
         </h2>

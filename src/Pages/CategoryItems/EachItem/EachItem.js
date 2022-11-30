@@ -48,7 +48,7 @@ const EachItem = ({ product, setProductItem }) => {
   //   return <p>Loading</p>;
   // }
   if (isAdminLoading) {
-    return <p>Loading</p>;
+    return <progress className="progress w-56"></progress>;
   }
 
   //Report product
@@ -74,6 +74,8 @@ const EachItem = ({ product, setProductItem }) => {
       });
   };
 
+  // console.log(sellerMail, userInfo[0]);
+
   const { name, sellerVerified } = userInfo[0];
 
   // const { name, sellerVerified } = sellerInfo[0];
@@ -81,7 +83,7 @@ const EachItem = ({ product, setProductItem }) => {
   // console.log(productName, sellerMail);
 
   return (
-    <div className="card w-full bg-base-100 shadow-xl">
+    <div className="card w-full bg-base-100 shadow-2xl">
       <figure className="px-10 pt-10">
         <img
           src={img}
@@ -91,17 +93,45 @@ const EachItem = ({ product, setProductItem }) => {
         />
       </figure>
       <div className="card-body items-center text-center">
-        <h2 className="card-title">{productName}</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <p>Location: {location}</p>
-        <p>Orginal Price: {orginalPrice}</p>
-        <p>Resale Price: {resalePrice}</p>
-        <p>Years of Use: {yearsOfuse}</p>
-        <p>Time of Post{time}</p>
-        <p>About: {description}</p>
-        <p>Condition: {condition}</p>
-        <p>Contact: {phoneNumber}</p>
-        <p>Seller Name: {name}</p>
+        <h2 className="card-title text-2xl font-bold">{productName}</h2>
+        <div className="divider my-0"></div>
+        <p>
+          Location: <strong>{location}</strong>
+        </p>
+        <div className="divider my-0"></div>
+        <p>
+          Orginal Price: <strong>{orginalPrice}</strong>
+        </p>
+        <div className="divider my-0"></div>
+        <p>
+          Resale Price: <strong>{resalePrice}</strong>
+        </p>
+        <div className="divider my-0"></div>
+        <p>
+          Years of Use: <strong>{yearsOfuse}</strong>
+        </p>
+        <div className="divider my-0"></div>
+        <p>
+          Time of Post: <strong>{time}</strong>
+        </p>
+        <div className="divider my-0"></div>
+        <p>
+          About: <strong>{description}</strong>
+        </p>
+        <div className="divider my-0"></div>
+        <p>
+          Condition: <strong>{condition}</strong>
+        </p>
+        <div className="divider my-0"></div>
+        <p>
+          Contact: <strong>{phoneNumber}</strong>
+        </p>
+        <div className="divider my-0"></div>
+        <p>
+          Seller Name: <strong>{name}</strong>
+        </p>
+        <div className="divider my-0"></div>
+
         <p>
           Verfication Status :
           {sellerVerified ? (
@@ -110,6 +140,7 @@ const EachItem = ({ product, setProductItem }) => {
             <FaTimes className="inline ml-4 text-red-600 bg-red-300 rounded-full h-5 w-5"></FaTimes>
           )}
         </p>
+        <div className="divider my-0"></div>
         <div className="card-actions">
           <label
             htmlFor="bookingModal"

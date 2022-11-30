@@ -30,6 +30,7 @@ const BookingModal = ({ productItem, setProductItem }) => {
 
     const booking = {
       orginalProductId: _id,
+      img,
       userName: name,
       email,
       productName,

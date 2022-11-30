@@ -66,8 +66,10 @@ const MyProducts = () => {
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <progress className="progress w-56"></progress>;
   }
+
+  // console.log(myProducts);
 
   return (
     <div>
@@ -75,7 +77,8 @@ const MyProducts = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th></th>
+              <th>No.</th>
+              <th>Image</th>
               <th>Product Name</th>
               <th>Price</th>
               <th>Sales Status</th>
@@ -87,20 +90,47 @@ const MyProducts = () => {
             {myProducts.map((myProduct, i) => (
               <tr key={i}>
                 <th>{i + 1}</th>
+                <td>
+                  <div className="avatar">
+                    <div className="w-24 rounded">
+                      <img src={myProduct?.img} alt="" />
+                    </div>
+                  </div>
+                </td>
                 <td>{myProduct.productName}</td>
-                <td>{myProduct.price} Taka</td>
-                <td>{myProduct.sold ? "Sold" : "Unsold"}</td>
+                <td>{myProduct.resalePrice} Taka</td>
+                <td>
+                  {myProduct.sold ? (
+                    <button className="btn btn-success">Sold</button>
+                  ) : (
+                    <button className="btn btn-warning">Unsold</button>
+                  )}
+                </td>
                 <td>
                   {myProduct.advertised ? (
-                    "Advertising Now"
+                    <button
+                      className={`btn btn-success ${
+                        myProduct.sold && "btn-disabled"
+                      }`}
+                    >
+                      Advertising Now
+                    </button>
                   ) : (
-                    <button onClick={() => handleAdvertiseProduct(myProduct)}>
+                    <button
+                      className={`btn btn-primary ${
+                        myProduct.sold && "btn-disabled"
+                      }`}
+                      onClick={() => handleAdvertiseProduct(myProduct)}
+                    >
                       Make Advertise
                     </button>
                   )}
                 </td>
                 <td>
-                  <button onClick={() => handleDeleteProduct(myProduct)}>
+                  <button
+                    className="btn btn-error"
+                    onClick={() => handleDeleteProduct(myProduct)}
+                  >
                     Delete
                   </button>
                 </td>

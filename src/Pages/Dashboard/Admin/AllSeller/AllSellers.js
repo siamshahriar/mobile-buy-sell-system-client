@@ -58,7 +58,7 @@ const AllSellers = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th></th>
+              <th>No.</th>
               <th>Buyer Name</th>
               <th>Email</th>
               <th>Verfify Status</th>
@@ -72,7 +72,13 @@ const AllSellers = () => {
                 <th>{i + 1}</th>
                 <td>{seller.name}</td>
                 <td>{seller.email}</td>
-                <td>{seller.sellerVerified ? "Yes" : "No"}</td>
+                <td>
+                  {seller.sellerVerified ? (
+                    <button className="btn btn-warning">Yes</button>
+                  ) : (
+                    <button className="btn btn-warning">No</button>
+                  )}
+                </td>
                 <td>
                   {seller.sellerVerified ? (
                     <button className="btn btn-primary btn-disabled">

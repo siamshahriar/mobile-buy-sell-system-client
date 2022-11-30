@@ -148,7 +148,7 @@ const Login = () => {
                   {loginError && <p className="text-red-600">{loginError}</p>}
                 </div>
 
-                <p>
+                <p className="text-white mt-6">
                   New to this site?{" "}
                   <Link className="text-red-300" to="/signup">
                     Register here
@@ -156,7 +156,9 @@ const Login = () => {
                 </p>
 
                 <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
-                  <p className="text-center font-semibold mx-4 mb-0">OR</p>
+                  <p className="text-center font-semibold mx-4 mb-0 text-white">
+                    OR
+                  </p>
                 </div>
 
                 <a
