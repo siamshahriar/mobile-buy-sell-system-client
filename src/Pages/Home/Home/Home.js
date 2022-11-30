@@ -1,5 +1,6 @@
 import React from "react";
 import Advertise from "../Advertise/Advertise";
+import AnotherPage from "../AnotherPage/AnotherPage";
 import Banner from "../Banner/Banner";
 import Categories from "../Categories/Categories";
 
@@ -14,6 +15,7 @@ const Home = () => {
         </h2>
       </div>
       <Categories></Categories>
+      <AnotherPage></AnotherPage>
     </div>
   );
 };
