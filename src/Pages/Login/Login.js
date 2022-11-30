@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
@@ -9,12 +10,34 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const { signIn } = useContext(AuthContext);
+  const { signIn, googleSignIn } = useContext(AuthContext);
   const [loginError, setLoginError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || "/";
+
+  const saveUser = (name, email) => {
+    const number = "0123123123";
+    const user = {
+      name,
+      email,
+      contact: number,
+      sellerVerified: false,
+      role: "buyer",
+    };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        navigate("/");
+      });
+  };
 
   const handleLogin = (data) => {
     console.log(data);
@@ -27,6 +50,31 @@ const Login = () => {
       .catch((error) => {
         console.log(error.message);
         setLoginError(error.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((userCredential) => {
+        const user = userCredential.user;
+
+        const currentUser = {
+          email: user.email,
+        };
+        saveUser(user.displayName, user.email);
+        // navigate(from, { replace: true });
+        toast.success("Google Log in Successful");
+        navigate(from, { replace: true });
+
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        // console.log(errorCode);
+        toast.error(errorCode.substring(5));
+        // The email of the user's account used.
+        // ...
       });
   };
 
@@ -112,6 +160,7 @@ const Login = () => {
                 </div>
 
                 <a
+                  onClick={handleGoogleSignIn}
                   className="px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
                   style={{ backgroundColor: "#3b5998" }}
                   href="#!"
